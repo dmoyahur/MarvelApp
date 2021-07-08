@@ -1,0 +1,90 @@
+import com.hiberus.mobile.android.AppConfig
+import com.hiberus.mobile.android.dependencies.Dependencies
+import com.hiberus.mobile.android.dependencies.Modules
+import com.hiberus.mobile.android.dependencies.Plugins
+
+apply plugin: Plugins.androidApplication
+apply plugin: Plugins.firebaseCrashlytics
+apply from: "$rootDir/base_kotlin_android.gradle"
+
+android {
+    compileSdkVersion AppConfig.compileSdkVersion
+    buildToolsVersion AppConfig.buildToolsVersion
+
+    defaultConfig {
+        applicationId AppConfig.applicationId
+        minSdkVersion AppConfig.minSdkVersion
+        targetSdkVersion AppConfig.targetSdkVersion
+        versionCode AppConfig.versionCode
+        versionName AppConfig.versionName
+
+        testInstrumentationRunner AppConfig.testInstrumentationRunner
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+dependencies {
+
+    // Modules
+    implementation project(Modules.dataModel)
+    implementation project(Modules.dataLocal)
+    implementation project(Modules.dataRemote)
+    implementation project(Modules.dataSource)
+    implementation project(Modules.dataRepository)
+    implementation project(Modules.domain)
+
+    // Kotlin
+    implementation Dependencies.Kotlin.stdLib
+    implementation Dependencies.Kotlin.ktxCore
+
+    // AndroidX
+    implementation Dependencies.AndroidX.appcompat
+    implementation Dependencies.AndroidX.constraintLayout
+    implementation Dependencies.AndroidX.material
+    implementation Dependencies.AndroidX.navigation
+    implementation Dependencies.AndroidX.navigationFragment
+
+    // Koin
+    implementation Dependencies.Koin.koinCompiler
+    implementation Dependencies.Koin.koin
+    implementation Dependencies.Koin.koinViewModel
+    implementation Dependencies.Kotlin.coroutineCore
+    implementation Dependencies.Kotlin.coroutineAndroid
+
+    // Glide
+    implementation Dependencies.Glide.glide
+
+    // Test
+    testImplementation Dependencies.Test.junit
+    androidTestImplementation Dependencies.AndroidTest.androidjunit
+    implementation Dependencies.AndroidX.lifecycleViewModel
+    implementation Dependencies.AndroidX.liveDataKtxExtensions
+    implementation Dependencies.AndroidX.support
+    androidTestImplementation Dependencies.AndroidTest.espressoCore
+
+
+    // GOOGLE
+    implementation Dependencies.Firebase.firebaseCrashlytics
+
+    // DEVELOPER TOOLS
+    debugImplementation Dependencies.DeveloperTools.leakCanary
+}

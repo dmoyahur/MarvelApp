@@ -1,0 +1,29 @@
+import com.hiberus.mobile.android.dependencies.Dependencies
+import com.hiberus.mobile.android.dependencies.Modules
+
+apply from:"$rootDir/configuration_android_library_module.gradle"
+
+def apikeyPropertiesFile = file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
+android {
+
+    defaultConfig {
+        buildConfigField 'String', 'MARVEL_PUBLIC_KEY', apikeyProperties['MARVEL_PUBLIC_KEY']
+        buildConfigField 'String', 'MARVEL_PRIVATE_KEY', apikeyProperties['MARVEL_PRIVATE_KEY']
+    }
+}
+
+dependencies {
+
+    implementation project(Modules.dataSource)
+    implementation project(Modules.dataModel)
+
+    implementation Dependencies.Koin.koin
+
+    implementation Dependencies.Retrofit.retrofit
+    implementation Dependencies.Retrofit.gsonConverter
+    implementation Dependencies.OkHttp.okhttp
+    implementation Dependencies.OkHttp.httpLoggingInterceptor
+}
