@@ -1,6 +1,8 @@
 package com.hiberus.mobile.android.marvelapp.characters.mapper
 
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
+import com.hiberus.mobile.android.marvelapp.util.ImageVariant
+import com.hiberus.mobile.android.marvelapp.util.getImageUrl
 import com.hiberus.mobile.android.model.characters.bo.CharacterBo
 
 internal fun List<CharacterBo>.toVo() = this.map { it.toVo() }
@@ -10,6 +12,9 @@ private fun CharacterBo.toVo(): CharacterVo =
         id,
         name,
         description,
-        thumbnail.path,
-        thumbnail.extension
+        getImageUrl(
+            thumbnail.path,
+            thumbnail.extension,
+            ImageVariant.LANDSCAPE_MEDIUM.variant
+        )
     )

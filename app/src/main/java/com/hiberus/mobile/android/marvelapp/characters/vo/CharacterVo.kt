@@ -8,6 +8,5 @@ data class CharacterVo(
     val id: Int,
     val name: String,
     val description: String,
-    val thumbnailPath: String,
-    val thumbnailExtension: String
+    val thumbnailUrl: String
 ) : Parcelable
