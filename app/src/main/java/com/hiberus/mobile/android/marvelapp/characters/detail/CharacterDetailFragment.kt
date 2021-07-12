@@ -37,7 +37,9 @@ class CharacterDetailFragment : Fragment() {
 
     private fun setupCharacter(character: CharacterVo) {
         context?.let { ctx ->
-            binding.ivCharacterDetailImage.loadImage(ctx, character.thumbnailUrl)
+            val imageUrl = getImageUrl(character.thumbnailPath, character.thumbnailExtension,
+                ImageVariant.LANDSCAPE_MEDIUM.variant)
+            binding.ivCharacterDetailImage.loadImage(ctx, imageUrl)
         }
 
         binding.tvCharacterDetailName.text = character.name

@@ -12,9 +12,6 @@ private fun CharacterBo.toVo(): CharacterVo =
         id,
         name,
         description,
-        getImageUrl(
-            thumbnail.path,
-            thumbnail.extension,
-            ImageVariant.LANDSCAPE_MEDIUM.variant
-        )
+        thumbnail.path,
+        thumbnail.extension
     )
