@@ -13,13 +13,16 @@ import java.lang.Exception
 class CharactersRepositoryImpl(
     private val remoteDataSource: CharactersRemoteDataSource,
     private val localDataSource: CharactersLocalDataSource
-): CharactersRepository {
+) : CharactersRepository {
 
-    override suspend fun getCharacters(forceRefresh: Boolean): Flow<AsyncResult<List<CharacterBo>>> = flow {
+    override suspend fun getCharacters(
+        forceRefresh: Boolean,
+        currentRankingPage: Int, pageSize: Int
+    ): Flow<AsyncResult<List<CharacterBo>>> = flow {
         emit(AsyncResult.Loading(null))
         if (forceRefresh) {
             try {
-                val characters = remoteDataSource.getCharacters()
+                val characters = remoteDataSource.getCharacters(currentRankingPage, pageSize)
                 localDataSource.saveCharacters(characters)
             } catch (e: Exception) {
                 val asyncError = (e as? AsyncException)?.asyncError

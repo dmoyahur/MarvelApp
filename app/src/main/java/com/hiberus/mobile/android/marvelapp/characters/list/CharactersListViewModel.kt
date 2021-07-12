@@ -1,9 +1,6 @@
 package com.hiberus.mobile.android.marvelapp.characters.list
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.hiberus.mobile.android.domain.characters.CharactersUseCase
 import com.hiberus.mobile.android.model.characters.bo.CharacterBo
 import com.hiberus.mobile.android.repository.util.AsyncResult
@@ -16,19 +13,24 @@ class CharactersListViewModel(
     private val charactersUseCase: CharactersUseCase
 ) : ViewModel() {
 
+    companion object {
+        private const val pageSize = 100
+    }
+
+    private var currentRankingPage = 0
+
     private var _characters = MutableLiveData<AsyncResult<List<CharacterBo>>>()
     val characters: LiveData<AsyncResult<List<CharacterBo>>>
         get() = _characters
 
-    init {
-        getCharacters()
-    }
-
     fun getCharacters() {
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
-                charactersUseCase.invoke().collect {
-                    _characters.value = it
+                charactersUseCase.invoke(currentRankingPage, pageSize).collect { result ->
+                    if (result is AsyncResult.Success) {
+                        currentRankingPage += pageSize
+                    }
+                    _characters.value = result
                 }
             }
         }

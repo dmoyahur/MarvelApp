@@ -12,8 +12,8 @@ class CharactersUseCaseImpl(
     private val charactersRepository: CharactersRepository
 ): CharactersUseCase {
 
-    override suspend fun invoke(): Flow<AsyncResult<List<CharacterBo>>> =
+    override suspend fun invoke(currentRankingPage: Int, pageSize: Int): Flow<AsyncResult<List<CharacterBo>>> =
         withContext(Dispatchers.IO) {
-            charactersRepository.getCharacters(true)
+            charactersRepository.getCharacters(true, currentRankingPage, pageSize)
         }
 }

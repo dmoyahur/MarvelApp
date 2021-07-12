@@ -9,9 +9,9 @@ class CharactersRemoteDataSourceImpl(
     private val charactersService: CharactersService
 ) : CharactersRemoteDataSource {
 
-    override suspend fun getCharacters(): List<CharacterBo> {
+    override suspend fun getCharacters(currentRankingPage: Int, pageSize: Int): List<CharacterBo> {
         return RemoteErrorManager.wrap {
-            charactersService.getCharacters().toBo()
+            charactersService.getCharacters(currentRankingPage, pageSize).toBo()
         }
     }
 }

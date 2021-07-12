@@ -4,5 +4,5 @@ import com.hiberus.mobile.android.model.characters.bo.CharacterBo
 
 interface CharactersRemoteDataSource {
 
-    suspend fun getCharacters(): List<CharacterBo>
+    suspend fun getCharacters(currentRankingPage: Int, pageSize: Int): List<CharacterBo>
 }

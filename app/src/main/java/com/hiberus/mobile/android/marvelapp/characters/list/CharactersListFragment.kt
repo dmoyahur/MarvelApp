@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.hiberus.mobile.android.marvelapp.R
 import com.hiberus.mobile.android.marvelapp.characters.mapper.toVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
@@ -22,17 +23,45 @@ class CharactersListFragment : Fragment() {
 
     companion object {
         private const val CHARACTER_EXTRA = "CHARACTER_EXTRA"
+        private const val endlessOffset = 5
     }
 
     private lateinit var binding: FragmentCharactersBinding
     private val viewModel: CharactersListViewModel by viewModel()
     private val charactersListAdapter: CharactersListAdapter by inject()
+    private lateinit var layoutManager: LinearLayoutManager
+    private var isLoadingMore = false
+    private var previousTotal = 0
+
     private val charactersAdapterListener = object: OnCharacterClickListener {
         override fun onCharacterClicked(character: CharacterVo) {
             val bundle = Bundle().apply {
                 putParcelable(CHARACTER_EXTRA, character)
             }
             findNavController().navigate(R.id.action_charactersFragment_to_characterDetailFragment, bundle)
+        }
+    }
+
+    private val charactersOnScrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+            val firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
+
+            if (isLoadingMore) {
+                if (totalItemCount > previousTotal) {
+                    isLoadingMore = false
+                    previousTotal = totalItemCount
+                }
+            }
+            if (!isLoadingMore && (totalItemCount - visibleItemCount)
+                <= (firstVisibleItem + endlessOffset)
+            ) {
+                viewModel.getCharacters()
+                isLoadingMore = true
+            }
         }
     }
 
@@ -49,15 +78,22 @@ class CharactersListFragment : Fragment() {
 
         setupCharactersRecycler()
 
-        viewModel.characters.observe(viewLifecycleOwner, {
-            handleDataState(it)
+        viewModel.characters.observe(viewLifecycleOwner, { result ->
+            if (result != null) {
+                handleDataState(result)
+            }
         })
+
+        viewModel.getCharacters()
     }
 
     private fun setupCharactersRecycler() {
+        layoutManager = LinearLayoutManager(context)
+        binding.charactersList.layoutManager = layoutManager
         charactersListAdapter.setCharactersAdapterListener(charactersAdapterListener)
-        binding.charactersList.layoutManager = LinearLayoutManager(context)
         binding.charactersList.adapter = charactersListAdapter
+        binding.charactersList.addOnScrollListener(charactersOnScrollListener)
+
     }
 
     private fun handleDataState(asyncResult: AsyncResult<List<CharacterBo>>) {
@@ -83,13 +119,15 @@ class CharactersListFragment : Fragment() {
     }
 
     private fun showResult(result: List<CharacterVo>) {
-        showLoading(false)
+        binding.clProgress.root.visibility = View.GONE
+        binding.charactersList.visibility = View.VISIBLE
         charactersListAdapter.characters = result
         charactersListAdapter.notifyDataSetChanged()
     }
 
     private fun showError(asyncError: AsyncError) {
-        showLoading(false)
+        binding.clProgress.root.visibility = View.GONE
+        binding.charactersList.visibility = View.GONE
         binding.clError.root.visibility = View.VISIBLE
         binding.clError.tvError.text = asyncError.debugMessage
     }

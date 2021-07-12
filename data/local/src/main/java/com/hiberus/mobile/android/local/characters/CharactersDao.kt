@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.Flow
 interface CharactersDao {
 
     @Transaction
-    @Query("SELECT * FROM Characters ORDER BY id DESC")
+    @Query("SELECT * FROM Characters ORDER BY name ASC")
     suspend fun getAllCharacters(): List<CharacterSummaryDbo>?
 
     @Transaction

@@ -6,7 +6,11 @@ import kotlinx.coroutines.flow.Flow
 
 interface CharactersRepository {
 
-    suspend fun getCharacters(forceRefresh: Boolean = false): Flow<AsyncResult<List<CharacterBo>>>
+    suspend fun getCharacters(
+        forceRefresh: Boolean = false,
+        currentRankingPage: Int,
+        pageSize: Int
+    ): Flow<AsyncResult<List<CharacterBo>>>
 
     suspend fun getCharacter(id: Long): Flow<AsyncResult<CharacterBo>>
 }
