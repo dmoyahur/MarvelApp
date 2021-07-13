@@ -120,6 +120,7 @@ class CharactersListFragment : Fragment() {
 
     private fun showResult(result: List<CharacterVo>) {
         binding.clProgress.root.visibility = View.GONE
+        binding.clError.root.visibility = View.GONE
         binding.charactersList.visibility = View.VISIBLE
         charactersListAdapter.characters = result
         charactersListAdapter.notifyDataSetChanged()
@@ -130,5 +131,6 @@ class CharactersListFragment : Fragment() {
         binding.charactersList.visibility = View.GONE
         binding.clError.root.visibility = View.VISIBLE
         binding.clError.tvError.text = asyncError.debugMessage
+        binding.clError.btnRetry.setOnClickListener { viewModel.getCharacters() }
     }
 }
