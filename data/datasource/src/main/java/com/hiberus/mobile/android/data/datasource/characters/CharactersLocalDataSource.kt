@@ -8,5 +8,7 @@ interface CharactersLocalDataSource {
 
     suspend fun getCharacter(id: Long): CharacterBo?
 
-    suspend fun saveCharacters(characters: List<CharacterBo>)
+    suspend fun saveCharacters(characters: List<CharacterBo>, offset: Int)
+
+    suspend fun isOffsetUpdated(offset: Int): Boolean
 }

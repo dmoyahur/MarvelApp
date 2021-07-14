@@ -37,6 +37,7 @@ class Dependencies {
         const val livedataKtxExtensions =
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         const val support = "androidx.legacy:legacy-support-v4:${Versions.support}"
+        const val crypto = "androidx.security:security-crypto:${Versions.crypto}"
     }
 
     object Koin {

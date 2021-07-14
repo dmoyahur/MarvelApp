@@ -6,6 +6,7 @@ import com.hiberus.mobile.android.local.di.localModule
 import com.hiberus.mobile.android.marvelapp.di.*
 import com.hiberus.mobile.android.remote.di.remoteModule
 import com.hiberus.mobile.android.repository.di.repositoryModule
+import com.hiberus.mobile.android.session.di.sessionModule
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -21,7 +22,8 @@ class MarvelApplication: Application() {
                 domainModule,
                 repositoryModule,
                 localModule,
-                remoteModule
+                remoteModule,
+                sessionModule
             ))
         }
     }

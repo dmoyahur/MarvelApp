@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val repositoryModule = module {
     single<CharactersRepository> {
-        CharactersRepositoryImpl(remoteDataSource = get(), localDataSource = get())
+        CharactersRepositoryImpl(remoteDataSource = get(), localDataSource = get(), sessionDataSource = get())
     }
 }

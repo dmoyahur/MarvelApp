@@ -93,7 +93,6 @@ class CharactersListFragment : Fragment() {
         charactersListAdapter.setCharactersAdapterListener(charactersAdapterListener)
         binding.charactersList.adapter = charactersListAdapter
         binding.charactersList.addOnScrollListener(charactersOnScrollListener)
-
     }
 
     private fun handleDataState(asyncResult: AsyncResult<List<CharacterBo>>) {

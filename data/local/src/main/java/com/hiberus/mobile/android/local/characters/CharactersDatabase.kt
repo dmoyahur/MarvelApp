@@ -9,7 +9,7 @@ import com.hiberus.mobile.android.local.characters.dbo.*
 import java.util.concurrent.Executors
 
 @Database(entities = [CharacterDbo::class, ComicDbo::class, EventDbo::class, SerieDbo::class,
-        StoryDbo::class, UrlDbo::class], version = 1, exportSchema = false)
+        StoryDbo::class, UrlDbo::class, OffsetDbo::class], version = 1, exportSchema = false)
 abstract class CharactersDatabase : RoomDatabase() {
 
     abstract fun charactersDao(): CharactersDao

@@ -1,6 +1,7 @@
 package com.hiberus.mobile.android.local.characters
 
 import com.hiberus.mobile.android.data.datasource.characters.CharactersLocalDataSource
+import com.hiberus.mobile.android.local.characters.mapper.OffsetMapper
 import com.hiberus.mobile.android.local.characters.mapper.toBo
 import com.hiberus.mobile.android.local.characters.mapper.toDbo
 import com.hiberus.mobile.android.model.characters.bo.CharacterBo
@@ -15,6 +16,11 @@ class CharactersLocalDataSourceImpl(
     override suspend fun getCharacter(id: Long): CharacterBo? =
         charactersDao.getCharacter(id)?.toBo()
 
-    override suspend fun saveCharacters(characters: List<CharacterBo>) =
-        charactersDao.insertCharactersList(characters.toDbo())
+    override suspend fun saveCharacters(characters: List<CharacterBo>, offset: Int) =
+        charactersDao.insertCharactersList(characters.toDbo(), OffsetMapper.map(offset))
+
+    override suspend fun isOffsetUpdated(offset: Int): Boolean =
+        charactersDao.getOffset()?.let {
+            it > offset
+        } ?: false
 }

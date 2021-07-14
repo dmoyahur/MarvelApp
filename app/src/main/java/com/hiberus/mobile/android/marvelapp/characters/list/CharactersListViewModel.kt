@@ -17,7 +17,7 @@ class CharactersListViewModel(
         private const val pageSize = 100
     }
 
-    private var currentRankingPage = 0
+    private var offset = 0
 
     private var _characters = MutableLiveData<AsyncResult<List<CharacterBo>>>()
     val characters: LiveData<AsyncResult<List<CharacterBo>>>
@@ -26,14 +26,16 @@ class CharactersListViewModel(
     fun getCharacters() {
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
-                charactersUseCase.invoke(currentRankingPage, pageSize).collect { result ->
+                charactersUseCase.invoke(offset, pageSize).collect { result ->
                     if (result is AsyncResult.Success) {
-                        currentRankingPage += pageSize
+                        val dataSize = result.data?.size ?: 0
+                        if (dataSize > offset) {
+                            offset = dataSize
+                        }
                     }
                     _characters.value = result
                 }
             }
         }
     }
-
 }

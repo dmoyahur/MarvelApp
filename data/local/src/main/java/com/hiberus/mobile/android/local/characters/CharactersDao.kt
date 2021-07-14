@@ -15,10 +15,14 @@ interface CharactersDao {
     @Query("SELECT * FROM Characters WHERE id = :id LIMIT 1")
     suspend fun getCharacter(id: Long): CharacterSummaryDbo?
 
+    @Query("SELECT `offset` FROM [Offset]")
+    suspend fun getOffset(): Int?
+
     @Transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertCharactersList(items: List<CharacterSummaryDbo>) {
+    suspend fun insertCharactersList(items: List<CharacterSummaryDbo>, offset: OffsetDbo) {
         items.forEach { insertCharacterSummary(it) }
+        insertOffset(offset)
     }
 
     @Transaction
@@ -49,6 +53,9 @@ interface CharactersDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertUrls(item: List<UrlDbo>)
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertOffset(offset: OffsetDbo)
 
     @Delete
     suspend fun delete(item: CharacterDbo)
