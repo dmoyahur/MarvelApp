@@ -35,9 +35,4 @@ dependencies {
 
     // KOTLIN
     implementation Dependencies.Kotlin.coroutineAndroid
-//    implementation Dependencies.Kotlin.ktxCore
-
-    // LIVEDATA
-    //implementation Dependencies.AndroidX.lifecycleExtensions
-    //implementation Dependencies.AndroidX.livedataKtxExtensions
 }
