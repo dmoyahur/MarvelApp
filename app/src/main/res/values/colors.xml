@@ -10,4 +10,5 @@
     <color name="bright_red">#AA0505</color>
     <color name="light_red">#C90202</color>
     <color name="dark_red">#740000</color>
+    <color name="background">#2B292B</color>
 </resources>

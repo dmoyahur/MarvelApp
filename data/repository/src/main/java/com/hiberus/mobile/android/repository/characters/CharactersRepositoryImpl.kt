@@ -38,4 +38,17 @@ class CharactersRepositoryImpl(
         }
         emit(AsyncResult.Success(localDataSource.getCharacters()))
     }
+
+    override suspend fun getCharacterDetail(id: Int): Flow<AsyncResult<CharacterBo>> = flow {
+        emit(AsyncResult.Loading(null))
+        try {
+            val character = remoteDataSource.getCharacterDetail(id)
+            localDataSource.saveCharacterDetail(character)
+        } catch (e: Exception) {
+            val asyncError = (e as? AsyncException)?.asyncError
+                ?: AsyncError.UnknownError("Unknown error", e)
+            emit(AsyncResult.Error(asyncError, null))
+        }
+        emit(AsyncResult.Success(localDataSource.getCharacter(id)))
+    }
 }

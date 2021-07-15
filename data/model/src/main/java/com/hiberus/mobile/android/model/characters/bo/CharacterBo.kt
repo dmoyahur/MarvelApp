@@ -1,10 +1,12 @@
 package com.hiberus.mobile.android.model.characters.bo
 
+import java.util.*
+
 data class CharacterBo(
     val id: Int,
     val name: String,
     val description: String,
-    val modified: String,
+    val modified: Date,
     val resourceURI: String,
     val thumbnail: ImageBo,
     val urls: List<UrlBo>,

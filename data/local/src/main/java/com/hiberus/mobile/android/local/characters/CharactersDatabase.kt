@@ -4,12 +4,13 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.sqlite.db.SupportSQLiteDatabase
+import androidx.room.TypeConverters
 import com.hiberus.mobile.android.local.characters.dbo.*
-import java.util.concurrent.Executors
+import com.hiberus.mobile.android.local.converter.DateConverter
 
 @Database(entities = [CharacterDbo::class, ComicDbo::class, EventDbo::class, SerieDbo::class,
         StoryDbo::class, UrlDbo::class, OffsetDbo::class], version = 1, exportSchema = false)
+@TypeConverters(DateConverter::class)
 abstract class CharactersDatabase : RoomDatabase() {
 
     abstract fun charactersDao(): CharactersDao

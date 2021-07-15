@@ -7,16 +7,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.withContext
 
-class CharactersUseCaseImpl(
-    private val charactersRepository: CharactersRepository
-) : CharactersUseCase {
+interface CharacterDetailUseCase {
 
-    override suspend operator fun invoke(
-        offset: Int,
-        pageSize: Int,
-        forceRefresh: Boolean
-    ): Flow<AsyncResult<List<CharacterBo>>> =
+    suspend operator fun invoke(id: Int): Flow<AsyncResult<CharacterBo>>
+}
+
+class CharacterDetailUseCaseImpl(
+    private val charactersRepository: CharactersRepository
+) : CharacterDetailUseCase {
+
+    override suspend operator fun invoke(id: Int): Flow<AsyncResult<CharacterBo>> =
         withContext(Dispatchers.IO) {
-            charactersRepository.getCharacters(offset, pageSize, forceRefresh)
+            charactersRepository.getCharacterDetail(id)
         }
 }

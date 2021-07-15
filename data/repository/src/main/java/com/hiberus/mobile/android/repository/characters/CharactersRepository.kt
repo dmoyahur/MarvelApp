@@ -11,4 +11,6 @@ interface CharactersRepository {
         pageSize: Int,
         forceRefresh: Boolean
     ): Flow<AsyncResult<List<CharacterBo>>>
+
+    suspend fun getCharacterDetail(id: Int): Flow<AsyncResult<CharacterBo>>
 }

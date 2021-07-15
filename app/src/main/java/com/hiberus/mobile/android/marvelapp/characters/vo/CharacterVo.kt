@@ -9,5 +9,6 @@ data class CharacterVo(
     val name: String,
     val description: String,
     val thumbnailPath: String,
-    val thumbnailExtension: String
+    val thumbnailExtension: String,
+    val comics: List<ComicVo>
 ) : Parcelable

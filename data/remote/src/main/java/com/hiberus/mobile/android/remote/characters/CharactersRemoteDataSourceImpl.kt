@@ -14,4 +14,10 @@ class CharactersRemoteDataSourceImpl(
             charactersService.getCharacters(currentRankingPage, pageSize).toBo()
         }
     }
+
+    override suspend fun getCharacterDetail(id: Int): List<CharacterBo> {
+        return RemoteErrorManager.wrap {
+            charactersService.getCharacterDetail(id).toBo()
+        }
+    }
 }

@@ -13,7 +13,7 @@ interface CharactersDao {
 
     @Transaction
     @Query("SELECT * FROM Characters WHERE id = :id LIMIT 1")
-    suspend fun getCharacter(id: Long): CharacterSummaryDbo?
+    suspend fun getCharacter(id: Int): CharacterSummaryDbo?
 
     @Query("SELECT `offset` FROM [Offset]")
     suspend fun getOffset(): Int?

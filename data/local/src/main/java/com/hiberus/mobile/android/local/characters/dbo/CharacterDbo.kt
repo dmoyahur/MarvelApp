@@ -1,8 +1,8 @@
 package com.hiberus.mobile.android.local.characters.dbo
 
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.util.*
 
 @Entity(tableName = "Characters")
 data class CharacterDbo(
@@ -10,7 +10,7 @@ data class CharacterDbo(
     val id: Int,
     val name: String,
     val description: String,
-    val modified: String,
+    val modified: Date,
     val resourceURI: String,
     val imageExtension: String,
     val imagePath: String

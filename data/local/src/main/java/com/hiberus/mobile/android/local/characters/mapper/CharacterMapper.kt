@@ -23,7 +23,7 @@ internal fun CharacterSummaryDbo.toBo() = CharacterBo(
 
 internal fun List<CharacterBo>.toDbo() = this.map { it.toDbo() }
 
-private fun CharacterBo.toDbo() = CharacterSummaryDbo(
+internal fun CharacterBo.toDbo() = CharacterSummaryDbo(
     this.toCharacterDbo(),
     urls.toDbo(id),
     comics.toDbo(id),

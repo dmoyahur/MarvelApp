@@ -11,6 +11,7 @@ dependencies {
     androidTestImplementation Dependencies.AndroidTest.rule
     // UNIT TESTS
     androidTestImplementation Dependencies.Test.junit
+    androidTestImplementation Dependencies.AndroidTest.androidjunit
     androidTestImplementation Dependencies.Test.mockk
     androidTestImplementation Dependencies.Test.coroutinesTest
     androidTestImplementation Dependencies.Test.archCoreTest
