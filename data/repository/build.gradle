@@ -2,7 +2,7 @@ import com.hiberus.mobile.android.dependencies.Dependencies
 import com.hiberus.mobile.android.dependencies.Modules
 import com.hiberus.mobile.android.dependencies.Plugins
 
-apply plugin: Plugins.kotlin
+apply from:"$rootDir/configuration_kotlin_module.gradle"
 
 dependencies {
 

@@ -22,8 +22,8 @@ class CharactersLocalDataSourceImpl(
 
     override suspend fun saveCharacterDetail(characters: List<CharacterBo>) {
         val characterToBeStored = characters.first()
-        getCharacter(characterToBeStored.id)?.let { characterStored ->
-            if (characterStored.modified.before(characterToBeStored.modified)) {
+        getCharacter(characterToBeStored.id).apply {
+            if (this == null || this.modified.before(characterToBeStored.modified)) {
                 charactersDao.insertCharacterSummary(characterToBeStored.toDbo())
             }
         }

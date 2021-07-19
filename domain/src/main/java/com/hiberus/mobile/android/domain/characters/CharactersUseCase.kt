@@ -10,8 +10,8 @@ import kotlinx.coroutines.withContext
 interface CharactersUseCase {
 
     suspend operator fun invoke(
-        offset: Int,
-        pageSize: Int,
+        offset: Int = 0,
+        pageSize: Int = 100,
         forceRefresh: Boolean = false
     ): Flow<AsyncResult<List<CharacterBo>>>
 }

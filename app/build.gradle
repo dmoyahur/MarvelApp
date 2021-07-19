@@ -6,6 +6,7 @@ import com.hiberus.mobile.android.dependencies.Plugins
 apply plugin: Plugins.androidApplication
 apply plugin: Plugins.firebaseCrashlytics
 apply from: "$rootDir/base_kotlin_android.gradle"
+apply plugin: Plugins.navigationSafeArgsKotlin
 
 android {
     compileSdkVersion AppConfig.compileSdkVersion
@@ -40,6 +41,13 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    packagingOptions {
+        exclude "**/attach_hotspot_windows.dll"
+        exclude 'META-INF/AL2.0'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/licenses/ASM'
+    }
 }
 
 dependencies {
@@ -68,20 +76,25 @@ dependencies {
     implementation Dependencies.Koin.koinCompiler
     implementation Dependencies.Koin.koin
     implementation Dependencies.Koin.koinViewModel
-    implementation Dependencies.Kotlin.coroutineCore
-    implementation Dependencies.Kotlin.coroutineAndroid
 
     // Glide
     implementation Dependencies.Glide.glide
 
     // Test
-    testImplementation Dependencies.Test.junit
-    androidTestImplementation Dependencies.AndroidTest.androidjunit
-    implementation Dependencies.AndroidX.lifecycleViewModel
-    implementation Dependencies.AndroidX.liveDataKtxExtensions
     implementation Dependencies.AndroidX.support
+    androidTestImplementation Dependencies.Test.koinCore
+    androidTestImplementation Dependencies.Test.mockitoKotlin
+    androidTestImplementation Dependencies.Test.mockitoAndroid
+    androidTestImplementation Dependencies.AndroidTest.testCoreKtx
+    androidTestImplementation Dependencies.AndroidTest.rule
+    androidTestImplementation Dependencies.Test.junit
+    androidTestImplementation Dependencies.Test.coroutinesTest
     androidTestImplementation Dependencies.AndroidTest.espressoCore
+    androidTestImplementation Dependencies.AndroidTest.espressoContrib
+    androidTestImplementation Dependencies.AndroidTest.coreTesting
+    androidTestImplementation Dependencies.AndroidTest.fragmentTesting
 
+    debugImplementation Dependencies.AndroidTest.fragmentTesting
 
     // GOOGLE
     implementation Dependencies.Firebase.firebaseCrashlytics

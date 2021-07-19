@@ -8,7 +8,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.hiberus.mobile.android.marvelapp.BaseFragment
-import com.hiberus.mobile.android.marvelapp.R
 import com.hiberus.mobile.android.marvelapp.characters.mapper.toVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
 import com.hiberus.mobile.android.marvelapp.databinding.FragmentCharactersBinding
@@ -20,7 +19,6 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class CharactersListFragment : BaseFragment() {
 
     companion object {
-        private const val CHARACTER_EXTRA = "CHARACTER_EXTRA"
         private const val endlessOffset = 5
     }
 
@@ -33,10 +31,8 @@ class CharactersListFragment : BaseFragment() {
 
     private val charactersAdapterListener = object: OnCharacterClickListener {
         override fun onCharacterClicked(character: CharacterVo) {
-            val bundle = Bundle().apply {
-                putParcelable(CHARACTER_EXTRA, character)
-            }
-            findNavController().navigate(R.id.action_charactersFragment_to_characterDetailFragment, bundle)
+            val action = CharactersListFragmentDirections.actionCharactersFragmentToCharacterDetailFragment(character)
+            findNavController().navigate(action)
         }
     }
 
@@ -102,10 +98,10 @@ class CharactersListFragment : BaseFragment() {
 
     private fun setupCharactersRecycler() {
         layoutManager = LinearLayoutManager(context)
-        binding.charactersList.layoutManager = layoutManager
+        binding.rvCharactersList.layoutManager = layoutManager
         charactersListAdapter.setCharactersAdapterListener(charactersAdapterListener)
-        binding.charactersList.adapter = charactersListAdapter
-        binding.charactersList.addOnScrollListener(charactersOnScrollListener)
+        binding.rvCharactersList.adapter = charactersListAdapter
+        binding.rvCharactersList.addOnScrollListener(charactersOnScrollListener)
     }
 
     @Suppress("UNCHECKED_CAST")

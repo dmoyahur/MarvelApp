@@ -6,7 +6,7 @@ data class CharacterBo(
     val id: Int,
     val name: String,
     val description: String,
-    val modified: Date,
+    var modified: Date,
     val resourceURI: String,
     val thumbnail: ImageBo,
     val urls: List<UrlBo>,

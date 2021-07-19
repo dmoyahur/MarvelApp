@@ -14,14 +14,10 @@ import com.hiberus.mobile.android.marvelapp.util.ImageVariant
 import com.hiberus.mobile.android.marvelapp.util.getImageUrl
 import com.hiberus.mobile.android.marvelapp.util.isNetworkAvailable
 import com.hiberus.mobile.android.marvelapp.util.loadImage
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.repository.util.AsyncResult
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailFragment : BaseFragment() {
-
-    companion object {
-        private const val CHARACTER_EXTRA = "CHARACTER_EXTRA"
-    }
 
     private lateinit var binding: FragmentCharacterDetailBinding
     private val viewModel: CharacterDetailViewModel by viewModel()
@@ -38,8 +34,9 @@ class CharacterDetailFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        (arguments?.getParcelable(CHARACTER_EXTRA) as? CharacterVo)?.apply {
-            character = this
+        arguments?.let {
+            val safeArgs = CharacterDetailFragmentArgs.fromBundle(it)
+            character = safeArgs.character
 
             configureToolbar()
             initObservers()
@@ -48,14 +45,20 @@ class CharacterDetailFragment : BaseFragment() {
     }
 
     private fun configureToolbar() {
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.title = character.name
+        (activity as? AppCompatActivity)?.supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as? AppCompatActivity)?.supportActionBar?.title = character.name
     }
 
     private fun initObservers() {
         viewModel.characterDetail.observe(viewLifecycleOwner, { result ->
+            val asyncResult = if (result is AsyncResult.Success) {
+                AsyncResult.Success(result.data?.toVo())
+            } else {
+                result
+            }
+
             handleDataState(
-                asyncResult = result,
+                asyncResult = asyncResult,
                 loadingView = binding.clProgress.root,
                 errorView = binding.clError.root,
                 errorMessageView = binding.clError.tvError,
@@ -74,7 +77,7 @@ class CharacterDetailFragment : BaseFragment() {
     }
 
     override fun showResult(result: Any?) {
-        (result as? CharacterBo)?.toVo()?.let { characterDetail ->
+        (result as? CharacterVo)?.let { characterDetail ->
             context?.let { ctx ->
                 val imageUrl = getImageUrl(characterDetail.thumbnailPath,
                     characterDetail.thumbnailExtension, ImageVariant.LANDSCAPE_MEDIUM.variant)

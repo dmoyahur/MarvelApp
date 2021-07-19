@@ -10,4 +10,7 @@ dependencies {
     testImplementation Dependencies.Test.coroutinesTest
     testImplementation Dependencies.Test.archCoreTest
     testImplementation Dependencies.Test.mockWebServer
+    testImplementation Dependencies.Test.koinTest
+    testImplementation Dependencies.AndroidTest.androidjunit
+    testImplementation Dependencies.AndroidTest.androidjunitKtx
 }

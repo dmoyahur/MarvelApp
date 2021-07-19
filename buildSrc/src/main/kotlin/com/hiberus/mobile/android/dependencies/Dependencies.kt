@@ -4,21 +4,33 @@ class Dependencies {
 
     object Test {
         const val junit = "junit:junit:${Versions.Test.junit}"
+        const val junitExt = "androidx.test.ext:${Versions.Test.junit}"
         const val mockk = "io.mockk:mockk:${Versions.Test.mockk}"
         const val mockitoKotlin = "com.nhaarman.mockitokotlin2:mockito-kotlin:${Versions.Test.mockitoKotlin}"
+        const val mockitoCore = "org.mockito:mockito-core:${Versions.Test.mockitoKotlin}"
+        const val mockitoInline = "org.mockito:mockito-inline:${Versions.Test.mockitoInline}"
+        const val mockitoAndroid = "org.mockito:mockito-android:${Versions.Test.mockitoAndroid}"
         const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.Kotlin.coroutines}"
         const val archCoreTest = "androidx.arch.core:core-testing:${Versions.Test.archCore}"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.Test.mockWebServer}"
         const val robolectric = "org.robolectric:robolectric:${Versions.Test.robolectric}"
+        const val koinTest = "io.insert-koin:koin-test:${Versions.Koin.koin}"
+        const val koinTestJunit = "io.insert-koin:koin-test-junit4:${Versions.Koin.koin}"
+        const val koinCore = "io.insert-koin:koin-test-core:${Versions.Koin.koin}"
     }
 
     object AndroidTest {
         const val core = "androidx.test:core:${Versions.AndroidTest.core}"
         const val androidjunit = "androidx.test.ext:junit:${Versions.AndroidTest.androidjunit}"
+        const val androidjunitKtx = "androidx.test.ext:junit-ktx:${Versions.AndroidTest.androidjunit}"
         const val espressoCore = "androidx.test.espresso:espresso-core:${Versions.AndroidTest.espressoCore}"
+        const val espressoContrib = "androidx.test.espresso:espresso-contrib:${Versions.AndroidTest.espressoCore}"
         const val roomTest = "androidx.room:room-testing:${Versions.AndroidX.room}"
         const val runner = "androidx.test:runner:${Versions.AndroidTest.runner}"
         const val rule = "androidx.test:rules:${Versions.AndroidTest.rule}"
+        const val testCoreKtx = "androidx.test:core-ktx:${Versions.AndroidTest.testCoreKtx}"
+        const val fragmentTesting = "androidx.fragment:fragment-testing:${Versions.AndroidTest.fragmentTesting}"
+        const val coreTesting = "androidx.arch.core:core-testing:${Versions.AndroidTest.coreTesting}"
     }
 
     object AndroidX {
@@ -31,10 +43,9 @@ class Dependencies {
         const val roomCoroutines = "androidx.room:room-coroutines:${Versions.AndroidX.room}"
         const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
-        const val liveDataKtxExtensions = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}"
         const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycle}"
-        const val livedataKtxExtensions =
+        const val liveDataKtxExtensions =
             "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         const val support = "androidx.legacy:legacy-support-v4:${Versions.support}"
         const val crypto = "androidx.security:security-crypto:${Versions.crypto}"

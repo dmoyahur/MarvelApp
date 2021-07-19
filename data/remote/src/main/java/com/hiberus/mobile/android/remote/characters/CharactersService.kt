@@ -13,7 +13,7 @@ interface CharactersService {
 
     @GET("/v1/public/characters")
     suspend fun getCharacters(
-        @Query("offset") currentRankingPage: Int,
+        @Query("offset") offset: Int,
         @Query("limit") pageSize: Int
     ): CharacterDataWrapperDto
 

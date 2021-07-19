@@ -26,12 +26,7 @@
         android:label="Detail"
         tools:layout="@layout/fragment_character_detail" >
         <argument
-            android:name="characterName"
-            app:argType="string" />
-        <argument
-            android:name="characterDescription"
-            app:argType="string" />
-        <argument android:name="imageUrl"
-            app:argType="string" />
+            android:name="character"
+            app:argType="com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo" />
     </fragment>
 </navigation>
