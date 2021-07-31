@@ -1,6 +1,6 @@
 package com.hiberus.mobile.android.remote.characters.mapper
 
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
 import com.hiberus.mobile.android.remote.characters.dto.CharacterDataWrapperDto
 import com.hiberus.mobile.android.remote.characters.dto.CharacterDto
 

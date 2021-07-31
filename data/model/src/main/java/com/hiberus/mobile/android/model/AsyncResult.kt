@@ -1,7 +1,6 @@
-package com.hiberus.mobile.android.repository.util
+package com.hiberus.mobile.android.model
 
-import com.hiberus.mobile.android.model.characters.error.AsyncError
-import java.lang.Exception
+import com.hiberus.mobile.android.model.error.AsyncError
 
 sealed class AsyncResult<out T>(open val data: T?) {
     data class Success<out T>(override val data: T?) : AsyncResult<T>(data)

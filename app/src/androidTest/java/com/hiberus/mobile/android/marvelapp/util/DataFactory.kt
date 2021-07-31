@@ -1,8 +1,8 @@
 package com.hiberus.mobile.android.marvelapp.util
 
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.model.characters.bo.ImageBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.characters.ImageBo
 import java.time.LocalDate
 import java.time.ZoneId
 import java.util.*

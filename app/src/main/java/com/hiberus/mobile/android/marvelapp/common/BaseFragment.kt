@@ -4,7 +4,7 @@ import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
-import com.hiberus.mobile.android.model.characters.error.AsyncError
+import com.hiberus.mobile.android.model.error.AsyncError
 
 abstract class BaseFragment : Fragment() {
 

@@ -1,4 +1,4 @@
-package com.hiberus.mobile.android.model.characters.bo
+package com.hiberus.mobile.android.model.characters
 
 import java.util.*
 

@@ -1,4 +1,4 @@
-package com.hiberus.mobile.android.model.characters.error
+package com.hiberus.mobile.android.model.error
 
 sealed class AsyncError(open val debugMessage: String) {
     data class ConnectionError(override val debugMessage: String) : AsyncError(debugMessage)

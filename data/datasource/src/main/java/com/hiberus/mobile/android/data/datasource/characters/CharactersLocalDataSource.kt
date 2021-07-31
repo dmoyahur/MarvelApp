@@ -1,6 +1,6 @@
 package com.hiberus.mobile.android.data.datasource.characters
 
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
 
 interface CharactersLocalDataSource {
 

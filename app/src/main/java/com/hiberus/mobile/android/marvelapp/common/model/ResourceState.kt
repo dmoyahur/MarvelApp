@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.marvelapp.common.model
 
-import com.hiberus.mobile.android.model.characters.error.AsyncError
-import com.hiberus.mobile.android.repository.util.AsyncResult
+import com.hiberus.mobile.android.model.error.AsyncError
+import com.hiberus.mobile.android.model.AsyncResult
 
 sealed class ResourceState<out T> {
 

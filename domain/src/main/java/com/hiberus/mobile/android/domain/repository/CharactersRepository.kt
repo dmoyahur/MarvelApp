@@ -1,7 +1,7 @@
-package com.hiberus.mobile.android.repository.characters
+package com.hiberus.mobile.android.domain.repository
 
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.repository.util.AsyncResult
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.AsyncResult
 import kotlinx.coroutines.flow.Flow
 
 interface CharactersRepository {

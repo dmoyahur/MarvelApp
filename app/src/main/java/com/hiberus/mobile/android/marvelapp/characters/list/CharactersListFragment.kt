@@ -12,7 +12,7 @@ import com.hiberus.mobile.android.marvelapp.characters.mapper.toVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
 import com.hiberus.mobile.android.marvelapp.databinding.FragmentCharactersBinding
 import com.hiberus.mobile.android.marvelapp.util.OnCharacterClickListener
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

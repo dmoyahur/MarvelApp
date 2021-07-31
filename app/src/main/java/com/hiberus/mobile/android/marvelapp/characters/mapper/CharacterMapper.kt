@@ -1,9 +1,7 @@
 package com.hiberus.mobile.android.marvelapp.characters.mapper
 
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
-import com.hiberus.mobile.android.marvelapp.util.ImageVariant
-import com.hiberus.mobile.android.marvelapp.util.getImageUrl
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
 
 internal fun List<CharacterBo>.toVo() = this.map { it.toVo() }
 

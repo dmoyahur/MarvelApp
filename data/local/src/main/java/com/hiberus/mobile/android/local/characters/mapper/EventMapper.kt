@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.local.characters.mapper
 
 import com.hiberus.mobile.android.local.characters.dbo.EventDbo
-import com.hiberus.mobile.android.model.characters.bo.EventBo
+import com.hiberus.mobile.android.model.characters.EventBo
 
 internal fun List<EventDbo>.toBo() = this.map { it.toBo() }
 

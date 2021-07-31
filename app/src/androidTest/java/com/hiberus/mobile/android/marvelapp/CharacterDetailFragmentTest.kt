@@ -14,10 +14,10 @@ import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
 import com.hiberus.mobile.android.domain.characters.CharacterDetailUseCase
 import com.hiberus.mobile.android.domain.characters.CharacterDetailUseCaseImpl
+import com.hiberus.mobile.android.domain.repository.CharactersRepository
 import com.hiberus.mobile.android.marvelapp.characters.detail.CharacterDetailFragment
 import com.hiberus.mobile.android.marvelapp.characters.detail.CharacterDetailFragmentArgs
 import com.hiberus.mobile.android.marvelapp.util.DataFactory.makeCharacterVo
-import com.hiberus.mobile.android.repository.characters.CharactersRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.hamcrest.CoreMatchers.not

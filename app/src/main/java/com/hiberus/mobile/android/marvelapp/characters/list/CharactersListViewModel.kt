@@ -7,8 +7,8 @@ import androidx.lifecycle.viewModelScope
 import com.hiberus.mobile.android.domain.characters.CharactersUseCase
 import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
 import com.hiberus.mobile.android.marvelapp.common.model.ResourceState.Companion.toResourceState
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.repository.util.AsyncResult
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.AsyncResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch

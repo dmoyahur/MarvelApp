@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.marvelapp.characters.mapper
 
 import com.hiberus.mobile.android.marvelapp.characters.vo.ComicVo
-import com.hiberus.mobile.android.model.characters.bo.ComicBo
+import com.hiberus.mobile.android.model.characters.ComicBo
 
 internal fun List<ComicBo>.toVo() = this.map { it.toVo() }
 

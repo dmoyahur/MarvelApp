@@ -1,9 +1,7 @@
 package com.hiberus.mobile.android.local.characters.mapper
 
 import com.hiberus.mobile.android.local.characters.dbo.SerieDbo
-import com.hiberus.mobile.android.local.characters.dbo.StoryDbo
-import com.hiberus.mobile.android.model.characters.bo.SerieBo
-import com.hiberus.mobile.android.model.characters.bo.StoryBo
+import com.hiberus.mobile.android.model.characters.SerieBo
 
 internal fun List<SerieDbo>.toBo() = this.map { it.toBo() }
 

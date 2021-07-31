@@ -3,14 +3,15 @@ package com.hiberus.mobile.android.repository.characters
 import com.hiberus.mobile.android.data.datasource.appsession.AppSessionDataSource
 import com.hiberus.mobile.android.data.datasource.characters.CharactersLocalDataSource
 import com.hiberus.mobile.android.data.datasource.characters.CharactersRemoteDataSource
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.model.characters.error.AsyncError
-import com.hiberus.mobile.android.model.characters.error.AsyncException
-import com.hiberus.mobile.android.repository.util.AsyncResult
+import com.hiberus.mobile.android.domain.repository.CharactersRepository
+import com.hiberus.mobile.android.model.AsyncResult
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.error.AsyncError
+import com.hiberus.mobile.android.model.error.AsyncException
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-class CharactersRepositoryImpl(
+class CharactersDataRepository(
     private val remoteDataSource: CharactersRemoteDataSource,
     private val localDataSource: CharactersLocalDataSource,
     private val sessionDataSource: AppSessionDataSource
