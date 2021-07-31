@@ -51,6 +51,10 @@ class Dependencies {
         const val crypto = "androidx.security:security-crypto:${Versions.crypto}"
     }
 
+    object AndroidTools {
+        const val desugaring = "com.android.tools:desugar_jdk_libs:${Versions.desugaring}"
+    }
+
     object Koin {
         const val koinCore = "io.insert-koin:koin-core:${Versions.Koin.koin}"
         const val koin = "io.insert-koin:koin-android:${Versions.Koin.koin}"
