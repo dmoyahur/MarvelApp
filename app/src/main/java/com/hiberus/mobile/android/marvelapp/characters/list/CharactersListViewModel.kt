@@ -5,6 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hiberus.mobile.android.domain.characters.CharactersUseCase
+import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
+import com.hiberus.mobile.android.marvelapp.common.model.ResourceState.Companion.toResourceState
 import com.hiberus.mobile.android.model.characters.bo.CharacterBo
 import com.hiberus.mobile.android.repository.util.AsyncResult
 import kotlinx.coroutines.Dispatchers
@@ -22,11 +24,12 @@ class CharactersListViewModel(
 
     private var offset = 0
 
-    private var _characters = MutableLiveData<AsyncResult<List<CharacterBo>>>()
-    val characters: LiveData<AsyncResult<List<CharacterBo>>>
+    private var _characters = MutableLiveData<ResourceState<List<CharacterBo>>>()
+    val characters: LiveData<ResourceState<List<CharacterBo>>>
         get() = _characters
 
     internal fun getCharacters() {
+        _characters.value = ResourceState.Loading()
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
                 charactersUseCase.invoke(offset, pageSize).collect { result ->
@@ -36,7 +39,7 @@ class CharactersListViewModel(
                             offset = dataSize
                         }
                     }
-                    _characters.value = result
+                    _characters.value = result.toResourceState()
                 }
             }
         }

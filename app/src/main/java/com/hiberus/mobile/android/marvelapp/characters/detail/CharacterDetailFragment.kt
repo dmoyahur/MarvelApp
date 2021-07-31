@@ -5,16 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
-import com.hiberus.mobile.android.marvelapp.BaseFragment
 import com.hiberus.mobile.android.marvelapp.characters.mapper.toVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.ComicVo
+import com.hiberus.mobile.android.marvelapp.common.BaseFragment
+import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
 import com.hiberus.mobile.android.marvelapp.databinding.FragmentCharacterDetailBinding
 import com.hiberus.mobile.android.marvelapp.util.ImageVariant
 import com.hiberus.mobile.android.marvelapp.util.getImageUrl
 import com.hiberus.mobile.android.marvelapp.util.isNetworkAvailable
 import com.hiberus.mobile.android.marvelapp.util.loadImage
-import com.hiberus.mobile.android.repository.util.AsyncResult
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailFragment : BaseFragment() {
@@ -51,14 +51,14 @@ class CharacterDetailFragment : BaseFragment() {
 
     private fun initObservers() {
         viewModel.characterDetail.observe(viewLifecycleOwner, { result ->
-            val asyncResult = if (result is AsyncResult.Success) {
-                AsyncResult.Success(result.data?.toVo())
+            val resourceState = if (result is ResourceState.Success) {
+                ResourceState.Success(result.data?.toVo())
             } else {
                 result
             }
 
             handleDataState(
-                asyncResult = asyncResult,
+                resourceState = resourceState,
                 loadingView = binding.clProgress.root,
                 errorView = binding.clError.root,
                 errorMessageView = binding.clError.tvError,

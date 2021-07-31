@@ -21,7 +21,6 @@ class CharactersRepositoryImpl(
         pageSize: Int,
         forceRefresh: Boolean
     ): Flow<AsyncResult<List<CharacterBo>>> = flow {
-        emit(AsyncResult.Loading(null))
         if (forceRefresh
             || sessionDataSource.isExpiredTime()
             || !localDataSource.isOffsetUpdated(offset)
@@ -40,7 +39,6 @@ class CharactersRepositoryImpl(
     }
 
     override suspend fun getCharacterDetail(id: Int): Flow<AsyncResult<CharacterBo>> = flow {
-        emit(AsyncResult.Loading(null))
         try {
             val character = remoteDataSource.getCharacterDetail(id)
             localDataSource.saveCharacterDetail(character)

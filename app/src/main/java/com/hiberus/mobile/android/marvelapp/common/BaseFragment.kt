@@ -1,35 +1,32 @@
-package com.hiberus.mobile.android.marvelapp
+package com.hiberus.mobile.android.marvelapp.common
 
-import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
 import com.hiberus.mobile.android.model.characters.error.AsyncError
-import com.hiberus.mobile.android.repository.util.AsyncResult
 
 abstract class BaseFragment : Fragment() {
 
     internal fun <T> handleDataState(
-        asyncResult: AsyncResult<Any?>,
+        resourceState: ResourceState<Any?>,
         loadingView: View?,
         errorView: View?,
         errorMessageView: View?,
         errorButtonRetryView: View?,
         retryFunction: () -> T
     ) {
-        when (asyncResult) {
-            is AsyncResult.Loading -> showLoading(loadingView, true)
-            is AsyncResult.Success -> {
+        when (resourceState) {
+            is ResourceState.Loading -> showLoading(loadingView, true)
+            is ResourceState.Success -> {
                 loadingView?.visibility = View.GONE
                 errorView?.visibility = View.GONE
-                showResult(asyncResult.data)
+                showResult(resourceState.data)
             }
-            is AsyncResult.Error -> {
+            is ResourceState.Error -> {
                 loadingView?.visibility = View.GONE
                 showError(
-                    asyncResult.error,
+                    resourceState.error,
                     errorView,
                     errorMessageView,
                     errorButtonRetryView,
