@@ -23,7 +23,7 @@ object Versions {
         const val material = "1.3.0"
         const val room = "2.3.0"
         const val navigation = "2.3.5"
-        const val lifecycle = "2.2.0"
+        const val lifecycle = "2.3.0"
     }
 
     object Test {

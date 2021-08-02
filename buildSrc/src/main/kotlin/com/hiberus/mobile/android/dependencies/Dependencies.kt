@@ -44,9 +44,7 @@ class Dependencies {
         const val navigation = "androidx.navigation:navigation-ui-ktx:${Versions.AndroidX.navigation}"
         const val navigationFragment = "androidx.navigation:navigation-fragment-ktx:${Versions.AndroidX.navigation}"
         const val lifecycleViewModel = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.AndroidX.lifecycle}"
-        const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:${Versions.AndroidX.lifecycle}"
-        const val liveDataKtxExtensions =
-            "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
+        const val lifecycleLiveData = "androidx.lifecycle:lifecycle-livedata-ktx:${Versions.AndroidX.lifecycle}"
         const val support = "androidx.legacy:legacy-support-v4:${Versions.support}"
         const val crypto = "androidx.security:security-crypto:${Versions.crypto}"
     }
