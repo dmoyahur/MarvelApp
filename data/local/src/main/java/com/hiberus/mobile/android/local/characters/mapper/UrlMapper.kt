@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.local.characters.mapper
 
 import com.hiberus.mobile.android.local.characters.dbo.UrlDbo
-import com.hiberus.mobile.android.model.characters.bo.UrlBo
+import com.hiberus.mobile.android.model.characters.UrlBo
 
 internal fun List<UrlDbo>.toBo() = this.map { it.toBo() }
 

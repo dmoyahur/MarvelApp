@@ -2,8 +2,8 @@ package com.hiberus.mobile.android.local.characters.mapper
 
 import com.hiberus.mobile.android.local.characters.dbo.CharacterDbo
 import com.hiberus.mobile.android.local.characters.dbo.CharacterSummaryDbo
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.model.characters.bo.ImageBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.characters.ImageBo
 
 internal fun List<CharacterSummaryDbo>.toBo() = this.map { it.toBo() }
 

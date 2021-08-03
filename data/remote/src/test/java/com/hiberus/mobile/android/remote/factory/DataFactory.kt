@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.remote.factory
 
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.model.characters.bo.ImageBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.characters.ImageBo
 import com.hiberus.mobile.android.remote.characters.dto.*
 import com.hiberus.mobile.android.remote.utils.getDate
 

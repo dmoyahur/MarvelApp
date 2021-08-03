@@ -1,9 +1,9 @@
 package com.hiberus.mobile.android.marvelapp
 
+import com.hiberus.mobile.android.domain.repository.CharactersRepository
 import com.hiberus.mobile.android.marvelapp.util.DataFactory.makeCharacterBoList
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
-import com.hiberus.mobile.android.repository.characters.CharactersRepository
-import com.hiberus.mobile.android.repository.util.AsyncResult
+import com.hiberus.mobile.android.model.characters.CharacterBo
+import com.hiberus.mobile.android.model.AsyncResult
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
