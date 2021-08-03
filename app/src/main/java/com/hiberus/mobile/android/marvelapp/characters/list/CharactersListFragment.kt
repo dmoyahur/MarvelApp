@@ -7,12 +7,12 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.hiberus.mobile.android.marvelapp.BaseFragment
+import com.hiberus.mobile.android.marvelapp.common.BaseFragment
 import com.hiberus.mobile.android.marvelapp.characters.mapper.toVo
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
 import com.hiberus.mobile.android.marvelapp.databinding.FragmentCharactersBinding
 import com.hiberus.mobile.android.marvelapp.util.OnCharacterClickListener
-import com.hiberus.mobile.android.model.characters.bo.CharacterBo
+import com.hiberus.mobile.android.model.characters.CharacterBo
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -79,7 +79,7 @@ class CharactersListFragment : BaseFragment() {
         viewModel.characters.observe(viewLifecycleOwner, { result ->
             if (result != null) {
                 handleDataState(
-                    asyncResult = result,
+                    resourceState = result,
                     loadingView = binding.clProgress.root,
                     errorView = binding.clError.root,
                     errorMessageView = binding.clError.tvError,

@@ -13,8 +13,8 @@ import androidx.test.filters.MediumTest
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.ActivityTestRule
+import com.hiberus.mobile.android.domain.repository.CharactersRepository
 import com.hiberus.mobile.android.marvelapp.characters.list.CharactersListFragment
-import com.hiberus.mobile.android.repository.characters.CharactersRepository
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runBlockingTest
 import org.junit.Assert.assertEquals

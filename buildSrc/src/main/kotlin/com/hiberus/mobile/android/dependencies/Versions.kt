@@ -9,6 +9,7 @@ object Versions {
     const val leakCanary = "2.4"
     const val support = "1.0.0"
     const val crypto = "1.1.0-alpha03"
+    const val desugaring = "1.1.5"
 
     object Kotlin {
         const val kotlin = "1.5.20"
@@ -22,7 +23,7 @@ object Versions {
         const val material = "1.3.0"
         const val room = "2.3.0"
         const val navigation = "2.3.5"
-        const val lifecycle = "2.2.0"
+        const val lifecycle = "2.3.0"
     }
 
     object Test {

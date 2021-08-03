@@ -1,7 +1,7 @@
 package com.hiberus.mobile.android.remote.error
 
-import com.hiberus.mobile.android.model.characters.error.AsyncError
-import com.hiberus.mobile.android.model.characters.error.AsyncException
+import com.hiberus.mobile.android.model.error.AsyncError
+import com.hiberus.mobile.android.model.error.AsyncException
 import retrofit2.HttpException
 import java.net.UnknownHostException
 

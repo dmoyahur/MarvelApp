@@ -1,8 +1,8 @@
 package com.hiberus.mobile.android.remote
 
 import com.hiberus.mobile.android.data.datasource.characters.CharactersRemoteDataSource
-import com.hiberus.mobile.android.model.characters.error.AsyncError
-import com.hiberus.mobile.android.model.characters.error.AsyncException
+import com.hiberus.mobile.android.model.error.AsyncError
+import com.hiberus.mobile.android.model.error.AsyncException
 import com.hiberus.mobile.android.remote.characters.CharactersService
 import com.hiberus.mobile.android.remote.di.remoteModule
 import com.hiberus.mobile.android.remote.utils.readResourceFile
