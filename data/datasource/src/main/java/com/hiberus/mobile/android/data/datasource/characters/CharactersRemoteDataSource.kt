@@ -6,5 +6,5 @@ interface CharactersRemoteDataSource {
 
     suspend fun getCharacters(offset: Int, pageSize: Int): List<CharacterBo>
 
-    suspend fun getCharacterDetail(id: Int): List<CharacterBo>
+    suspend fun getCharacterDetail(id: Int): CharacterBo
 }

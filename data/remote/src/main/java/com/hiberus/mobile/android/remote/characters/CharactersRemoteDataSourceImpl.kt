@@ -15,9 +15,9 @@ class CharactersRemoteDataSourceImpl(
         }
     }
 
-    override suspend fun getCharacterDetail(id: Int): List<CharacterBo> {
+    override suspend fun getCharacterDetail(id: Int): CharacterBo {
         return RemoteErrorManager.wrap {
-            charactersService.getCharacterDetail(id).toBo()
+            charactersService.getCharacterDetail(id).toBo().first()
         }
     }
 }
