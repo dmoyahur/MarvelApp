@@ -25,7 +25,7 @@ class CharacterDetailViewModel(
         _characterDetail.value = ResourceState.Loading()
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
-                characterDetailUseCase.invoke(id).collect { result ->
+                characterDetailUseCase(id).collect { result ->
                     _characterDetail.value = result.toResourceState()
                 }
             }

@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">MarvelApp</string>
-    <string name="retry">Retry</string>
+    <string name="retry">Reintentar</string>
     <string name="description">Description</string>
     <string name="comics">Comics</string>
+
+    <!-- Errors -->
+    <string name="connection_error">Hay un problema con la conexión a Internet. Por favor, comprueba tu conexión vía Wi-Fi o datos móviles.</string>
+    <string name="server_error">El servidor no se encuentra disponible. Por favor, inténtalo de nuevo más tarde.</string>
+    <string name="unknown_error">Ha ocurrido un error con la solicitud.</string>
 </resources>

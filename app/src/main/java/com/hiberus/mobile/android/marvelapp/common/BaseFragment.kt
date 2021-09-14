@@ -3,8 +3,10 @@ package com.hiberus.mobile.android.marvelapp.common
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import com.hiberus.mobile.android.marvelapp.R
 import com.hiberus.mobile.android.marvelapp.common.model.ResourceState
 import com.hiberus.mobile.android.model.error.AsyncError
+import timber.log.Timber
 
 abstract class BaseFragment : Fragment() {
 
@@ -24,7 +26,8 @@ abstract class BaseFragment : Fragment() {
                 showResult(resourceState.data)
             }
             is ResourceState.Error -> {
-                loadingView?.visibility = View.GONE
+                Timber.e(resourceState.error.debugMessage)
+                showLoading(loadingView, false)
                 showError(
                     resourceState.error,
                     errorView,
@@ -52,8 +55,12 @@ abstract class BaseFragment : Fragment() {
         retryFunction: () -> T
     ) {
         errorView?.visibility = View.VISIBLE
-        (errorMessageView as? TextView)?.text = asyncError.debugMessage
         errorButtonRetryView?.setOnClickListener { retryFunction() }
+        (errorMessageView as? TextView)?.text = when (asyncError) {
+            is AsyncError.ConnectionError -> resources.getString(R.string.connection_error)
+            is AsyncError.ServerError -> resources.getString(R.string.server_error)
+            else -> resources.getString(R.string.unknown_error)
+        }
     }
 
     protected abstract fun showResult(result: Any?)

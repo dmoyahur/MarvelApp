@@ -6,7 +6,7 @@ apply from:"$rootDir/configuration_kotlin_module.gradle"
 dependencies {
 
     implementation project(Modules.domain)
-    implementation project(Modules.dataModel)
+    implementation project(Modules.model)
     implementation project(Modules.dataSource)
 
     implementation Dependencies.Koin.koinCore

@@ -1,8 +1,10 @@
 package com.hiberus.mobile.android.marvelapp
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.hiberus.mobile.android.domain.di.domainModule
 import com.hiberus.mobile.android.local.di.localModule
+import com.hiberus.mobile.android.marvelapp.common.log.TimberLogImpl
 import com.hiberus.mobile.android.marvelapp.di.*
 import com.hiberus.mobile.android.remote.di.remoteModule
 import com.hiberus.mobile.android.repository.di.repositoryModule
@@ -26,5 +28,11 @@ class MarvelApplication: Application() {
                 sessionModule
             ))
         }
+
+        // Initialize logging library
+        TimberLogImpl.init()
+
+        // Initialize Stetho
+        Stetho.initializeWithDefaults(this)
     }
 }
