@@ -91,6 +91,8 @@ class Dependencies {
     }
 
     object DeveloperTools {
-        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}"
+        const val leakCanary = "com.squareup.leakcanary:leakcanary-android:${Versions.DeveloperTools.leakCanary}"
+        const val timber = "com.jakewharton.timber:timber:${Versions.DeveloperTools.timber}"
+        const val stetho = "com.facebook.stetho:stetho-okhttp3:${Versions.DeveloperTools.stetho}"
     }
 }

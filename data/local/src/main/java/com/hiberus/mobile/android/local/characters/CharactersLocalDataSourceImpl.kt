@@ -19,11 +19,10 @@ class CharactersLocalDataSourceImpl(
     override suspend fun saveCharacters(characters: List<CharacterBo>, offset: Int) =
         charactersDao.insertCharactersList(characters.toDbo(), OffsetMapper.map(offset))
 
-    override suspend fun saveCharacterDetail(characters: List<CharacterBo>) {
-        val characterToBeStored = characters.first()
-        getCharacter(characterToBeStored.id).apply {
-            if (this == null || this.modified.before(characterToBeStored.modified)) {
-                charactersDao.insertCharacterSummary(characterToBeStored.toDbo())
+    override suspend fun saveCharacterDetail(character: CharacterBo) {
+        getCharacter(character.id).apply {
+            if (this == null || this.modified.before(character.modified)) {
+                charactersDao.insertCharacterSummary(character.toDbo())
             }
         }
     }

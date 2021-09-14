@@ -6,13 +6,12 @@ object Versions {
     const val retrofit = "2.9.0"
     const val moshi = "1.12.0"
     const val glide = "4.12.0"
-    const val leakCanary = "2.4"
     const val support = "1.0.0"
     const val crypto = "1.1.0-alpha03"
     const val desugaring = "1.1.5"
 
     object Kotlin {
-        const val kotlin = "1.5.20"
+        const val kotlin = "1.5.30"
         const val ktx = "1.6.0"
         const val coroutines = "1.4.3"
     }
@@ -55,5 +54,11 @@ object Versions {
 
     object Koin {
         const val koin = "2.2.2"
+    }
+
+    object DeveloperTools {
+        const val leakCanary = "2.4"
+        const val timber = "5.0.1"
+        const val stetho = "1.5.1"
     }
 }

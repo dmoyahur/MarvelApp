@@ -32,7 +32,7 @@ class CharactersListViewModel(
         _characters.value = ResourceState.Loading()
         viewModelScope.launch {
             withContext(Dispatchers.Main) {
-                charactersUseCase.invoke(offset, pageSize).collect { result ->
+                charactersUseCase(offset, pageSize).collect { result ->
                     if (result is AsyncResult.Success) {
                         val dataSize = result.data?.size ?: 0
                         if (dataSize > offset) {

@@ -10,7 +10,7 @@ android {
 dependencies {
 
     implementation project(Modules.dataSource)
-    implementation project(Modules.dataModel)
+    implementation project(Modules.model)
 
     kapt Dependencies.AndroidX.roomCompiler
     implementation Dependencies.AndroidX.room

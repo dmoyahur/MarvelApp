@@ -30,24 +30,26 @@ class CharactersDataRepository(
                 val characters = remoteDataSource.getCharacters(offset, pageSize)
                 localDataSource.saveCharacters(characters, offset)
                 sessionDataSource.saveLastOpenTime(System.currentTimeMillis())
+                emit(AsyncResult.Success(characters))
             } catch (e: Exception) {
                 val asyncError = (e as? AsyncException)?.asyncError
                     ?: AsyncError.UnknownError("Unknown error", e)
                 emit(AsyncResult.Error(asyncError, null))
             }
+        } else {
+            emit(AsyncResult.Success(localDataSource.getCharacters()))
         }
-        emit(AsyncResult.Success(localDataSource.getCharacters()))
     }
 
     override suspend fun getCharacterDetail(id: Int): Flow<AsyncResult<CharacterBo>> = flow {
         try {
             val character = remoteDataSource.getCharacterDetail(id)
             localDataSource.saveCharacterDetail(character)
+            emit(AsyncResult.Success(character))
         } catch (e: Exception) {
             val asyncError = (e as? AsyncException)?.asyncError
                 ?: AsyncError.UnknownError("Unknown error", e)
             emit(AsyncResult.Error(asyncError, null))
         }
-        emit(AsyncResult.Success(localDataSource.getCharacter(id)))
     }
 }

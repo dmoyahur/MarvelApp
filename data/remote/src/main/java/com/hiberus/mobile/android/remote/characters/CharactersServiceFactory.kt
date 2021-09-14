@@ -1,5 +1,6 @@
 package com.hiberus.mobile.android.remote.characters
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.hiberus.mobile.android.remote.BuildConfig
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -16,9 +17,10 @@ object CharactersServiceFactory {
     private const val API_KEY = "apikey"
     private const val HASH = "hash"
 
-    fun makeCharactersService(): CharactersService {
+    fun makeCharactersService(isDebug: Boolean): CharactersService {
         val okHttpClient = makeOkHttpClient(
-            makeLoggingInterceptor()
+            makeLoggingInterceptor(isDebug),
+            makeStethoInterceptor(isDebug)
         )
         val retrofit = Retrofit.Builder()
             .baseUrl(CharactersService.BASE_URL)
@@ -30,9 +32,10 @@ object CharactersServiceFactory {
     }
 
     private fun makeOkHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+        stethoInterceptor: StethoInterceptor?
     ): OkHttpClient {
-        return OkHttpClient.Builder()
+        val okHttpClient = OkHttpClient.Builder()
             .addInterceptor { chain ->
                 val request = chain.request().newBuilder()
                 val originalUrl = chain.request().url
@@ -55,13 +58,28 @@ object CharactersServiceFactory {
             .addNetworkInterceptor(httpLoggingInterceptor)
             .connectTimeout(120, TimeUnit.SECONDS)
             .readTimeout(120, TimeUnit.SECONDS)
-            .build()
+
+        stethoInterceptor?.let { okHttpClient.addNetworkInterceptor(it) }
+
+        return okHttpClient.build()
     }
 
-    private fun makeLoggingInterceptor(): HttpLoggingInterceptor {
+    private fun makeLoggingInterceptor(isDebug: Boolean): HttpLoggingInterceptor {
         val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BODY
+        logging.level = if (isDebug) {
+            HttpLoggingInterceptor.Level.BODY
+        } else {
+            HttpLoggingInterceptor.Level.NONE
+        }
 
         return logging
+    }
+
+    private fun makeStethoInterceptor(isDebug: Boolean): StethoInterceptor? {
+        return if (isDebug) {
+            StethoInterceptor()
+        } else {
+            null
+        }
     }
 }

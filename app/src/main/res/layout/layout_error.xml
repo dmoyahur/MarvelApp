@@ -10,7 +10,7 @@
 
     <Button
         android:id="@+id/btn_retry"
-        android:layout_width="120dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/retry"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,6 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
+        android:gravity="center_horizontal"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

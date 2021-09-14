@@ -17,7 +17,7 @@ android {
 dependencies {
 
     implementation project(Modules.dataSource)
-    implementation project(Modules.dataModel)
+    implementation project(Modules.model)
 
     implementation Dependencies.Koin.koin
 
@@ -25,4 +25,5 @@ dependencies {
     implementation Dependencies.Retrofit.gsonConverter
     implementation Dependencies.OkHttp.okhttp
     implementation Dependencies.OkHttp.httpLoggingInterceptor
+    implementation Dependencies.DeveloperTools.stetho
 }
