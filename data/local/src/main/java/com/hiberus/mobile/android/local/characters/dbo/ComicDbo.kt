@@ -9,7 +9,8 @@ import androidx.room.*
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("characterId"),
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index("characterId")]
 )
 data class ComicDbo(
     @PrimaryKey(autoGenerate = true)
