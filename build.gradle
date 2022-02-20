@@ -20,6 +20,18 @@ allprojects {
         google()
         mavenCentral()
     }
+
+    configurations {
+        all {
+            // Workaround for missing compatibility with M1/ARM64
+            // See: https://issuetracker.google.com/issues/174695268?pli=1
+            // See: https://github.com/xerial/sqlite-jdbc/pull/578
+            // Can be removed once JDBC got it fixed and Room got their dependency updated.
+            resolutionStrategy {
+                force 'org.xerial:sqlite-jdbc:3.32.3.3'
+            }
+        }
+    }
 }
 
 task clean(type: Delete) {

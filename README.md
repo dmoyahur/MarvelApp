@@ -30,6 +30,7 @@ Clean Architecture will not be appropriate for every project, so it is down to y
 * [Android SDK](https://developer.android.com/studio/index.html)
 * Android 11 ([API 30](https://developer.android.com/studio/releases/platforms))
 * Latest Android SDK Tools and build tools.
+* [Marvel API keys](https://developer.marvel.com)
 
 ## Architecture
 

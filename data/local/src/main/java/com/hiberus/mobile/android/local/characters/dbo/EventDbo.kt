@@ -3,6 +3,7 @@ package com.hiberus.mobile.android.local.characters.dbo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Ignore
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
 @Entity(
@@ -12,7 +13,8 @@ import androidx.room.PrimaryKey
         parentColumns = arrayOf("id"),
         childColumns = arrayOf("characterId"),
         onDelete = ForeignKey.CASCADE
-    )]
+    )],
+    indices = [Index("characterId")]
 )
 data class EventDbo(
     @PrimaryKey(autoGenerate = true)
