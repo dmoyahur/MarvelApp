@@ -2,6 +2,8 @@ package com.hiberus.mobile.android.marvelapp.characters.list
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.request.RequestOptions
 import com.hiberus.mobile.android.marvelapp.characters.vo.CharacterVo
@@ -11,7 +13,15 @@ import com.hiberus.mobile.android.marvelapp.util.OnCharacterClickListener
 import com.hiberus.mobile.android.marvelapp.util.getImageUrl
 import com.hiberus.mobile.android.marvelapp.util.loadImage
 
-class CharactersListAdapter : RecyclerView.Adapter<CharactersListAdapter.ViewHolder>() {
+private class DiffCallback : DiffUtil.ItemCallback<CharacterVo>() {
+    override fun areItemsTheSame(oldItem: CharacterVo, newItem: CharacterVo): Boolean =
+        oldItem.id == newItem.id
+
+    override fun areContentsTheSame(oldItem: CharacterVo, newItem: CharacterVo): Boolean =
+        oldItem == newItem
+}
+
+class CharactersListAdapter : ListAdapter<CharacterVo, CharactersListAdapter.ViewHolder>(DiffCallback()) {
 
     var characters: List<CharacterVo> = mutableListOf()
     private var charactersAdapterListener: OnCharacterClickListener? = null

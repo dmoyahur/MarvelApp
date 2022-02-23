@@ -15,6 +15,7 @@ import com.hiberus.mobile.android.marvelapp.util.ImageVariant
 import com.hiberus.mobile.android.marvelapp.util.getImageUrl
 import com.hiberus.mobile.android.marvelapp.util.isNetworkAvailable
 import com.hiberus.mobile.android.marvelapp.util.loadImage
+import com.hiberus.mobile.android.marvelapp.util.setVisible
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailFragment : BaseFragment() {
@@ -59,6 +60,7 @@ class CharacterDetailFragment : BaseFragment() {
 
             handleDataState(
                 resourceState = resourceState,
+                successView = binding.svCharacterDetail,
                 loadingView = binding.clProgress.root,
                 errorView = binding.clError.root,
                 errorMessageView = binding.clError.tvError,
@@ -85,14 +87,14 @@ class CharacterDetailFragment : BaseFragment() {
             }
 
             if (characterDetail.description.isNotEmpty()) {
-                binding.tvCharacterDetailDescriptionLabel.visibility = View.VISIBLE
-                binding.tvCharacterDetailDescription.visibility = View.VISIBLE
+                binding.tvCharacterDetailDescriptionLabel.setVisible(true)
+                binding.tvCharacterDetailDescription.setVisible(true)
                 binding.tvCharacterDetailDescription.text = characterDetail.description
             }
 
             if (characterDetail.comics.isNotEmpty()) {
-                binding.tvCharacterDetailComicsLabel.visibility = View.VISIBLE
-                binding.tvCharacterDetailComics.visibility = View.VISIBLE
+                binding.tvCharacterDetailComicsLabel.setVisible(true)
+                binding.tvCharacterDetailComics.setVisible(true)
                 binding.tvCharacterDetailComics.text = getComicsTextList(characterDetail.comics)
             }
         }
