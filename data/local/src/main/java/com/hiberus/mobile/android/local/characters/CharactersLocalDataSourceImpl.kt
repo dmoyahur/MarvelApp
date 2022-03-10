@@ -29,6 +29,6 @@ class CharactersLocalDataSourceImpl(
 
     override suspend fun isOffsetUpdated(offset: Int): Boolean =
         charactersDao.getOffset()?.let {
-            it > offset
+            it >= offset
         } ?: false
 }

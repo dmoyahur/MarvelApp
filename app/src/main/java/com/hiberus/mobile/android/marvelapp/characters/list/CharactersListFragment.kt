@@ -25,7 +25,7 @@ class CharactersListFragment : BaseFragment() {
     private lateinit var binding: FragmentCharactersBinding
     private val viewModel: CharactersListViewModel by viewModel()
     private val charactersListAdapter: CharactersListAdapter by inject()
-    private lateinit var layoutManager: LinearLayoutManager
+    private lateinit var linearLayoutManager: LinearLayoutManager
     private var isLoadingMore = false
     private var previousTotal = 0
 
@@ -40,9 +40,9 @@ class CharactersListFragment : BaseFragment() {
         override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
 
-            val visibleItemCount = layoutManager.childCount
-            val totalItemCount = layoutManager.itemCount
-            val firstVisibleItem = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = linearLayoutManager.childCount
+            val totalItemCount = linearLayoutManager.itemCount
+            val firstVisibleItem = linearLayoutManager.findFirstVisibleItemPosition()
 
             if (isLoadingMore) {
                 if (totalItemCount > previousTotal) {
@@ -80,6 +80,7 @@ class CharactersListFragment : BaseFragment() {
             if (result != null) {
                 handleDataState(
                     resourceState = result,
+                    successView = binding.rvCharactersList,
                     loadingView = binding.clProgress.root,
                     errorView = binding.clError.root,
                     errorMessageView = binding.clError.tvError,
@@ -97,18 +98,22 @@ class CharactersListFragment : BaseFragment() {
     }
 
     private fun setupCharactersRecycler() {
-        layoutManager = LinearLayoutManager(context)
-        binding.rvCharactersList.layoutManager = layoutManager
+        linearLayoutManager = LinearLayoutManager(context)
         charactersListAdapter.setCharactersAdapterListener(charactersAdapterListener)
-        binding.rvCharactersList.adapter = charactersListAdapter
-        binding.rvCharactersList.addOnScrollListener(charactersOnScrollListener)
+        with(binding.rvCharactersList) {
+            layoutManager = linearLayoutManager
+            adapter = charactersListAdapter
+            addOnScrollListener(charactersOnScrollListener)
+        }
     }
 
     @Suppress("UNCHECKED_CAST")
     override fun showResult(result: Any?) {
-        (result as? List<CharacterBo>)?.apply {
-            charactersListAdapter.characters = this.toVo()
-            charactersListAdapter.notifyDataSetChanged()
+        (result as? List<CharacterBo>)?.let {
+            with(charactersListAdapter) {
+                characters = it.toVo()
+                submitList(characters)
+            }
         }
     }
 }
